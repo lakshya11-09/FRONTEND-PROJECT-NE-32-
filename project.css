@@ -1,0 +1,63 @@
+/* Basic page style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+/* Centered white box */
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 20px 25px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+
+/* Headings */
+h2, h3 {
+    text-align: center;
+}
+
+/* Buttons */
+button {
+    padding: 8px 16px;
+    margin: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Row for navigation buttons */
+.buttons-row {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Hide elements */
+.hidden {
+    display: none;
+}
+
+/* Options (radio buttons) */
+.option-item {
+    margin: 8px 0;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#question-number {
+    font-weight: bold;
+}
