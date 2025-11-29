@@ -1,13 +1,6 @@
-/************************************************************
- *  SIMPLE MCQ ONLINE TEST (No Bootstrap)
- *  - Very basic, easy-to-understand JavaScript
- ************************************************************/
 
-// Total questions to show in one test
 const TOTAL_QUESTIONS = 15;
 
-// Question bank (you can add more questions here)
-// answer: index of the correct option (0, 1, 2, or 3)
 const questionBank = [
   {
     "id": 1,
@@ -361,16 +354,13 @@ const questionBank = [
   }
 ];
 
-// Will store 15 randomly selected questions from questionBank
+
 let selectedQuestions = [];
 
-// Will store the user's answers, example: [0, 2, null, 1, ...]
 let userAnswers = [];
 
-// Current question index (0 to TOTAL_QUESTIONS - 1)
 let currentQuestionIndex = 0;
 
-// Get HTML elements
 const startScreen = document.getElementById("start-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const resultScreen = document.getElementById("result-screen");
@@ -385,29 +375,25 @@ const resultCorrectSpan = document.getElementById("result-correct");
 const resultWrongSpan = document.getElementById("result-wrong");
 const resultPercentageSpan = document.getElementById("result-percentage");
 
-// Called when user clicks "Start Test"
 function startQuiz() {
-    // Reset
+
     userAnswers = new Array(TOTAL_QUESTIONS).fill(null);
     currentQuestionIndex = 0;
 
-    // 1. Choose 15 random questions from questionBank
     selectedQuestions = getRandomQuestions(questionBank, TOTAL_QUESTIONS);
 
-    // 2. Show quiz screen, hide start and result screens
     startScreen.classList.add("hidden");
     resultScreen.classList.add("hidden");
     quizScreen.classList.remove("hidden");
 
-    // 3. Show the first question
     showQuestion();
 }
 
-// Get n random questions from an array
+
 function getRandomQuestions(allQuestions, n) {
     const shuffled = allQuestions.slice(); // copy array
 
-    // Shuffle array (Fisher-Yates)
+
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         const temp = shuffled[i];
@@ -415,25 +401,23 @@ function getRandomQuestions(allQuestions, n) {
         shuffled[j] = temp;
     }
 
-    // Return first n questions
+ 
     return shuffled.slice(0, n);
 }
 
-// Display the current question and its options
 function showQuestion() {
     const currentQuestion = selectedQuestions[currentQuestionIndex];
 
-    // Show "Question X of 15"
+
     questionNumberDiv.textContent =
         "Question " + (currentQuestionIndex + 1) + " of " + TOTAL_QUESTIONS;
 
-    // Show question text
+
     questionTextDiv.textContent = currentQuestion.question;
 
-    // Clear old options
     optionsDiv.innerHTML = "";
 
-    // Create new options
+
     for (let i = 0; i < currentQuestion.options.length; i++) {
         const optionText = currentQuestion.options[i];
         const optionId = "option" + i;
@@ -447,7 +431,6 @@ function showQuestion() {
         input.id = optionId;
         input.value = i;
 
-        // If user already selected this option earlier, mark it
         if (userAnswers[currentQuestionIndex] === i) {
             input.checked = true;
         }
@@ -467,12 +450,11 @@ function showQuestion() {
     }
 }
 
-// Save user's selected option for the current question
+
 function selectOption(optionIndex) {
     userAnswers[currentQuestionIndex] = optionIndex;
 }
 
-// Go to next question
 function nextQuestion() {
     if (currentQuestionIndex < TOTAL_QUESTIONS - 1) {
         currentQuestionIndex++;
@@ -480,7 +462,7 @@ function nextQuestion() {
     }
 }
 
-// Go to previous question
+
 function prevQuestion() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
@@ -488,7 +470,7 @@ function prevQuestion() {
     }
 }
 
-// Submit the quiz
+
 function submitQuiz() {
     let correct = 0;
     let attempted = 0;
@@ -510,22 +492,22 @@ function submitQuiz() {
 
     const percentage = Math.round((correct / TOTAL_QUESTIONS) * 100);
 
-    // Fill result values
+
     resultTotalSpan.textContent = TOTAL_QUESTIONS;
     resultAttemptedSpan.textContent = attempted;
     resultCorrectSpan.textContent = correct;
     resultWrongSpan.textContent = wrong;
     resultPercentageSpan.textContent = percentage;
 
-    // Show result screen, hide quiz screen
+
     quizScreen.classList.add("hidden");
     resultScreen.classList.remove("hidden");
 }
 
-// Restart quiz from beginning
+
 function restartQuiz() {
-    // Show start screen again
     startScreen.classList.remove("hidden");
     quizScreen.classList.add("hidden");
     resultScreen.classList.add("hidden");
+
 }
