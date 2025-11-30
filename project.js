@@ -391,7 +391,7 @@ function startQuiz() {
 
 
 function getRandomQuestions(allQuestions, n) {
-    const shuffled = allQuestions.slice(); // copy array
+    const shuffled = allQuestions.slice();
 
 
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -511,3 +511,4 @@ function restartQuiz() {
     resultScreen.classList.add("hidden");
 
 }
+
